@@ -5,11 +5,26 @@ require "hump.camera"
 local vector = hump.vector
 local camera = hump.camera
 
+-- "constants"
+SCREEN_WIDTH  =  800
+SCREEN_HEIGHT = 600
+ARENA_WIDTH   = 2400
+ARENA_HEIGHT  = 400
+
+walls = {
+   left   = {},
+   right  = {},
+   top    = {},
+   bottom = {}
+}
+
 function love.load()
 	-- convenience
 	local gfx = love.graphics
 	local phys = love.physics
 
+   -- bg
+   gfx.setBackgroundColor(220, 220, 220)
 end
 
 function love.update(dt)
