@@ -33,17 +33,17 @@ function love.load()
    world = phys.newWorld(0, 0, ARENA_WIDTH, ARENA_HEIGHT)
    world:setGravity(0, 350)
 
-   walls.left.body = phys.newBody(world, 2, ARENA_HEIGHT/2, 0, 0)
+   walls.left.body = phys.newBody(world, 2, ARENA_HEIGHT / 2, 0, 0)
    walls.left.shape = phys.newRectangleShape(walls.left.body, 0, 0, 5, ARENA_HEIGHT, 0)
 
-   walls.right.body = phys.newBody(world, ARENA_WIDTH-2, ARENA_HEIGHT/2, 0, 0)
+   walls.right.body = phys.newBody(world, ARENA_WIDTH - 2, ARENA_HEIGHT / 2, 0, 0)
    walls.right.shape = phys.newRectangleShape(walls.right.body, 0, 0, 5, ARENA_HEIGHT, 0)
 
-   walls.top.body = phys.newBody(world, ARENA_WIDTH/2, ARENA_HEIGHT-2, 0, 0)
-   walls.top.shape = phys.newRectangleShape(walls.top.body, 0, 0, 5, ARENA_HEIGHT, 0)
+   walls.top.body = phys.newBody(world, ARENA_WIDTH / 2, 2, 0, 0)
+   walls.top.shape = phys.newRectangleShape(walls.top.body, 0, 0, ARENA_WIDTH, 5, 0)
 
-   walls.bottom.body = phys.newBody(world, ARENA_WIDTH/2, 2, 0, 0)
-   walls.bottom.shape = phys.newRectangleShape(walls.bottom.body, 0, 0, 5, ARENA_HEIGHT, 0)
+   walls.bottom.body = phys.newBody(world, ARENA_WIDTH / 2, ARENA_HEIGHT - 2, 0, 0)
+   walls.bottom.shape = phys.newRectangleShape(walls.bottom.body, 0, 0, ARENA_WIDTH, 5, 0)
 
    -- ball
    ball.img = gfx.newImage("ball.png")
@@ -81,5 +81,15 @@ function love.draw()
 	-- convenience
 	local gfx = love.graphics
 
+   gfx.setColor(255, 255, 255)
+   gfx.rectangle("fill", 0, 0, ARENA_WIDTH, ARENA_HEIGHT)
+
+   gfx.setColor(0, 250, 0, 100)
+   gfx.rectangle("fill", ARENA_WIDTH - 150, 0, 150, ARENA_HEIGHT)
+
+
    gfx.setColor(0, 0, 0)
+   for k, v in pairs(walls) do
+      drawSimpleRect(v)
+   end
 end
